@@ -20,14 +20,14 @@ namespace AlgoVisuFS.Controllers
         }
 
         [HttpGet("NaivBudget", Name = "GetNaivBudget")]
-        public Task<NaivBudgetGetResponseDto> GetNaivBudget(double RemainingCapital) 
+        public Task<NaivBudgetDto> GetNaivBudget(double RemainingCapital) 
         { 
             var result = _budgetCalculater.CalculateBudget(RemainingCapital).Map();
             return Task.FromResult(result);
         }
 
         [HttpGet("CompleteBudget", Name = "GetCompleteBudget")]
-        public Task<CompleteBudgetGetResponseDto> GetCompleteBudget(double RemainingCapital, double MinimumPossibleSpending)
+        public Task<CompleteBudgetDto> GetCompleteBudget(double RemainingCapital, double MinimumPossibleSpending)
         {
             var result = _budgetCalculater.CalculateCompleteBudget(RemainingCapital, MinimumPossibleSpending).Map();
             return Task.FromResult(result);

@@ -27,17 +27,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/NaivBudgetGetResponseDto"
+                  "$ref": "#/components/schemas/NaivBudgetDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NaivBudgetGetResponseDto"
+                  "$ref": "#/components/schemas/NaivBudgetDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NaivBudgetGetResponseDto"
+                  "$ref": "#/components/schemas/NaivBudgetDto"
                 }
               }
             }
@@ -75,17 +75,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CompleteBudgetGetResponseDto"
+                  "$ref": "#/components/schemas/CompleteBudgetDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CompleteBudgetGetResponseDto"
+                  "$ref": "#/components/schemas/CompleteBudgetDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CompleteBudgetGetResponseDto"
+                  "$ref": "#/components/schemas/CompleteBudgetDto"
                 }
               }
             }
@@ -105,11 +105,156 @@
           }
         }
       }
+    },
+    "/DFS/convert": {
+      "post": {
+        "tags": [
+          "DFS"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MazeModelDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MazeModelDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MazeModelDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DFS/solve": {
+      "post": {
+        "tags": [
+          "DFS"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MazeInputDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MazeInputDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MazeInputDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MazeModelDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MazeModelDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MazeModelDto"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "CompleteBudgetGetResponseDto": {
+      "CellGetDto": {
+        "type": "object",
+        "properties": {
+          "posX": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "posY": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "weight": {
+            "type": "number",
+            "format": "double"
+          },
+          "state": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isGoal": {
+            "type": "boolean"
+          },
+          "isStart": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CompleteBudgetDto": {
         "required": [
           "dailyBudget",
           "dailyBudgetAfterSpendingDailyBudget",
@@ -147,7 +292,42 @@
         },
         "additionalProperties": false
       },
-      "NaivBudgetGetResponseDto": {
+      "MazeInputDto": {
+        "required": [
+          "mazeModel",
+          "starCell"
+        ],
+        "type": "object",
+        "properties": {
+          "mazeModel": {
+            "$ref": "#/components/schemas/MazeModelDto"
+          },
+          "starCell": {
+            "$ref": "#/components/schemas/CellGetDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MazeModelDto": {
+        "type": "object",
+        "properties": {
+          "solvable": {
+            "type": "boolean"
+          },
+          "maze": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CellGetDto"
+              }
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NaivBudgetDto": {
         "required": [
           "dailySpending"
         ],

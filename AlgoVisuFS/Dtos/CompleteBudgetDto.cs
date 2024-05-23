@@ -2,7 +2,7 @@
 
 namespace AlgoVisuFS.WebApi.Dtos
 {
-    public class CompleteBudgetGetResponseDto
+    public class CompleteBudgetDto
     {
         [Required]
         public double DailyBudget { get; init; }

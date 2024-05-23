@@ -5,12 +5,12 @@ namespace AlgoVisuFS.WebApi.Mappers
 {
     public static class BudgetMapper
     {
-        public static NaivBudgetGetResponseDto Map(this BudgetResponseModel model) => new()
+        public static NaivBudgetDto Map(this BudgetResponseModel model) => new()
         {
             DailySpending = model.DailySpending
         };
 
-        public static CompleteBudgetGetResponseDto Map(this CompleteBudgetModel model) => new()
+        public static CompleteBudgetDto Map(this CompleteBudgetModel model) => new()
         {
             DailyBudget = model.DailyBudget,
             DailyBudgetAfterSpendingDailyBudget = model.DailyBudgetAfterSpendingDailyBudget,

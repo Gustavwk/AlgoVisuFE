@@ -35,7 +35,7 @@ namespace DFSSolverTests
                 new int[] { 1, 1, 1, 1, 1, 1, 1 }
             };
 
-            var maze = MazeTestUtils.MazeParser(mazeArr);
+            var maze = MazeParser.Parse(mazeArr);
 
             var startCell = maze.Maze.First(row => row.Any(cell => cell.isStart)).First(cell => cell.isStart);
 
@@ -58,7 +58,7 @@ namespace DFSSolverTests
                 new int[] { 1, 1, 1, 1, 1, 1, 1 }
             };
 
-            var maze = MazeTestUtils.MazeParser(mazeArr);
+            var maze = MazeParser.Parse(mazeArr);
 
             var startCell = maze.Maze.First(row => row.Any(cell => cell.isStart)).First(cell => cell.isStart);
 

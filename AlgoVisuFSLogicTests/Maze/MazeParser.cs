@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace AlgoVisuFSLogicTests.Maze
 {
-    public static class MazeTestUtils
+    public static class MazeParser
     {
-        public static MazeModel MazeParser(int[][] mazeArr)
+        public static MazeModel Parse(int[][] mazeArr)
         {
             var result = new MazeModel
             {
