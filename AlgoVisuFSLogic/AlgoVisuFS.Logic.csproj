@@ -7,11 +7,12 @@
     <ProjectGuid>{2E9508B4-1CF0-4821-962C-98A6C9C5DC7D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HvorFuckedErJeg2Logic</RootNamespace>
-    <AssemblyName>HvorFuckedErJeg2Logic</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RootNamespace>AlgoVisuFSLogic</RootNamespace>
+    <AssemblyName>AlgoVisuFSLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,12 +44,18 @@
   <ItemGroup>
     <Compile Include="BudgetCalculator\BudgetCalculatorService.cs" />
     <Compile Include="BudgetCalculator\IBudgetCalculatorService.cs" />
+    <Compile Include="MazeSolver\DFSSolver.cs" />
+    <Compile Include="MazeSolver\IMazeSolver.cs" />
+    <Compile Include="MazeSolver\MazeUtils.cs" />
     <Compile Include="Model\BudgetResponseModel.cs" />
     <Compile Include="Model\CompleteBudgetModel.cs" />
+    <Compile Include="Model\Enums\CellState.cs" />
+    <Compile Include="Model\MazeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CsvGenerator\" />
+    <Folder Include="MazeGenerator\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
