@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type CompleteBudgetGetResponseDto = {
+export type CompleteBudgetDto = {
     dailyBudget: number;
     dailyBudgetAfterSpendingDailyBudget: number;
     dailyBudgetAfterSpendingThousand: number;

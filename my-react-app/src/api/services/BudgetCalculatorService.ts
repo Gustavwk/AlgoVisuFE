@@ -2,20 +2,20 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CompleteBudgetGetResponseDto } from '../models/CompleteBudgetGetResponseDto';
-import type { NaivBudgetGetResponseDto } from '../models/NaivBudgetGetResponseDto';
+import type { CompleteBudgetDto } from '../models/CompleteBudgetDto';
+import type { NaivBudgetDto } from '../models/NaivBudgetDto';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export class BudgetCalculatorService {
     /**
      * @param remainingCapital
-     * @returns NaivBudgetGetResponseDto OK
+     * @returns NaivBudgetDto OK
      * @throws ApiError
      */
     public static getNaivBudget(
         remainingCapital?: number,
-    ): CancelablePromise<NaivBudgetGetResponseDto> {
+    ): CancelablePromise<NaivBudgetDto> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/BudgetCalculator/NaivBudget',
@@ -27,13 +27,13 @@ export class BudgetCalculatorService {
     /**
      * @param remainingCapital
      * @param minimumPossibleSpending
-     * @returns CompleteBudgetGetResponseDto OK
+     * @returns CompleteBudgetDto OK
      * @throws ApiError
      */
     public static getCompleteBudget(
         remainingCapital?: number,
         minimumPossibleSpending?: number,
-    ): CancelablePromise<CompleteBudgetGetResponseDto> {
+    ): CancelablePromise<CompleteBudgetDto> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/BudgetCalculator/CompleteBudget',

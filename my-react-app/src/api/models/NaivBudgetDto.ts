@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type NaivBudgetGetResponseDto = {
+export type NaivBudgetDto = {
     dailySpending: number;
 };
 
