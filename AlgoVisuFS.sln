@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgoVisuFS.WebApi", "AlgoVisuFS\AlgoVisuFS.WebApi.csproj", "{A6209932-F742-4710-89BB-13EB833544F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgoVisuFE.Logic", "AlgoVisuFSLogic\AlgoVisuFE.Logic.csproj", "{2E9508B4-1CF0-4821-962C-98A6C9C5DC7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgoVisuFS.Logic", "AlgoVisuFSLogic\AlgoVisuFS.Logic.csproj", "{2E9508B4-1CF0-4821-962C-98A6C9C5DC7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

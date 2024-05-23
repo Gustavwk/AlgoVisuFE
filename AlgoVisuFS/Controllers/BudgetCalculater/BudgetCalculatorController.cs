@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using HvorFuckedErJeg2Logic.BudgetCalculatorService;
-using HvorFuckedErJeg2.WebApi.Mappers;
-using HvorFuckedErJeg2.WebApi.Dtos;
+using AlgoVisuFS.WebApi.Mappers;
+using AlgoVisuFS.WebApi.Dtos;
+using AlgoVisuFSLogic.BudgetCalculatorService;
 
-namespace HvorFuckedErJeg2.Controllers
+namespace AlgoVisuFS.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -16,7 +16,7 @@ namespace HvorFuckedErJeg2.Controllers
         public BudgetCalculatorController(ILogger<BudgetCalculatorController> logger, IBudgetCalculatorService budgetCalculatorService)
         {
             _logger = logger;
-            _budgetCalculater = budgetCalculatorService;
+            _budgetCalculater = budgetCalculatorService ?? throw new ArgumentNullException(nameof(budgetCalculatorService));
         }
 
         [HttpGet("NaivBudget", Name = "GetNaivBudget")]

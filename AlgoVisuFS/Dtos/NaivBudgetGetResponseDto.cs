@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HvorFuckedErJeg2.WebApi.Dtos
+namespace AlgoVisuFS.WebApi.Dtos
 {
     public class NaivBudgetGetResponseDto
     {

@@ -1,6 +1,6 @@
 ﻿
 
-namespace HvorFuckedErJeg2Logic.Model
+namespace AlgoVisuFSLogic.Model
 {
     public class BudgetResponseModel
     {

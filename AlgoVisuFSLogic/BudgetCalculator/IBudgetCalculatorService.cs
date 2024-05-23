@@ -1,7 +1,7 @@
-﻿using HvorFuckedErJeg2Logic.Model;
+﻿using AlgoVisuFSLogic.Model;
 using System;
 
-namespace HvorFuckedErJeg2Logic.BudgetCalculatorService
+namespace AlgoVisuFSLogic.BudgetCalculatorService
 {
     public interface IBudgetCalculatorService
     {

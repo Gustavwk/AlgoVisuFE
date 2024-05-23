@@ -1,4 +1,4 @@
-using HvorFuckedErJeg2Logic.BudgetCalculatorService;
+using AlgoVisuFSLogic.BudgetCalculatorService;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "HvorFuckedErJegSwagger",
+        Title = "AlgoVisuFSSwagger",
         Version = "v1"
     });
 });
@@ -37,7 +37,7 @@ app.UseCors("AllowSpecificOrigin");
 app.UseSwagger();
      app.UseSwaggerUI(c => 
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "HvorFuckedErJeg V1");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "AlgoVisuFS V1");
     });
 
 app.UseRouting();

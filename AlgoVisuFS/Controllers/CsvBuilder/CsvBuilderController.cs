@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace HvorFuckedErJeg2.Controllers
+namespace AlgoVisuFS.Controllers
 {
     [ApiController]
     [Route("[controller]")]

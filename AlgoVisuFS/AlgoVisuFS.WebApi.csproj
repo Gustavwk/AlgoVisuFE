@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HvorFuckedErJeg2Logic\AlgoVisuFE.Logic.csproj" />
+    <ProjectReference Include="..\AlgoVisuFSLogic\AlgoVisuFS.Logic.csproj" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

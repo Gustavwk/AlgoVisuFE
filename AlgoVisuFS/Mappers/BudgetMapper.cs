@@ -1,7 +1,7 @@
-﻿using HvorFuckedErJeg2.WebApi.Dtos;
-using HvorFuckedErJeg2Logic.Model;
+﻿using AlgoVisuFS.WebApi.Dtos;
+using AlgoVisuFSLogic.Model;
 
-namespace HvorFuckedErJeg2.WebApi.Mappers
+namespace AlgoVisuFS.WebApi.Mappers
 {
     public static class BudgetMapper
     {
