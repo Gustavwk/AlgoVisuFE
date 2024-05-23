@@ -1,0 +1,75 @@
+# Default ignore patterns for Visual Studio projects
+[Bb]in/
+[Oo]bj/
+[Dd]ebug*/
+[Rr]elease*/
+x64/
+x86/
+[Aa]pp[Pp]ublish/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# .NET Core specific ignore patterns
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Tooling
+_ReSharper*/
+*.sln.ide
+
+# NuGet
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nupkg
+nuget.exe
+NuGet.config
+
+# Others
+*.cache
+*.vspscc
+*.vssscc
+*.mdf
+*.ldf
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.log
+*.vsmd
+*.bak
+*.swp
+*.tmp
+*.mdmp
+*.opendb
+*.VC.db
+*.vsdx
+*.VC.VC.opendb
+*.vsidx
+*.v2
+
+# Exclude all .vsdx files
+*.vsdx
+
+# Exclude all .vsd files
+*.vsd
+
+# Ignore the .vstemplate files
+*.vstemplate
+
+# Ignore the specific project file and directory names that appear to be custom
+.vs/HvorFuckedErJeg2/DesignTimeBuild/.dtbcache.v2
+.vs/HvorFuckedErJeg2/FileContentIndex/3c365857-a16e-403e-824e-acf6f9b07271.vsidx
+.vs/HvorFuckedErJeg2/FileContentIndex/40f954b5-4b55-4574-8130-97b0874224b8.vsidx
+.vs/HvorFuckedErJeg2/FileContentIndex/e81402bb-1ad6-4275-88a2-50692ddffcec.vsidx
+.vs/HvorFuckedErJeg2/FileContentIndex/ea0626ea-18a7-455b-b0d9-54a4672bf5e7.vsidx
+.vs/HvorFuckedErJeg2/v17/.futdcache.v2
+.vs/ProjectEvaluation/hvorfuckederjeg2.metadata.v6.1
+.vs/ProjectEvaluation/hvorfuckederjeg2.projects.v6.1
+.vs/HvorFuckedErJeg2/DesignTimeBuild/.dtbcache.v2
+.vs/HvorFuckedErJeg2/FileContentIndex/3c365857-a16e-403e-824e-acf6f9b07271.vsidx
+.vs/HvorFuckedErJeg2/FileContentIndex/40f954b5-4b55-4574-8130-97b0874224b8.vsidx
+.vs/HvorFuckedErJeg2/FileContentIndex/e81402bb-1ad6-4275-88a2-50692ddffcec.vsidx
+.vs/HvorFuckedErJeg2/FileContentIndex/ea0626ea-18a7-455b-b0d9-54a4672bf5e7.vsidx
+.vs/HvorFuckedErJeg2/v17/.futdcache.v2

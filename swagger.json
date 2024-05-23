@@ -1,0 +1,165 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "HvorFuckedErJegSwagger",
+    "version": "v1"
+  },
+  "paths": {
+    "/BudgetCalculator/NaivBudget": {
+      "get": {
+        "tags": [
+          "BudgetCalculator"
+        ],
+        "operationId": "GetNaivBudget",
+        "parameters": [
+          {
+            "name": "RemainingCapital",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/NaivBudgetGetResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NaivBudgetGetResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NaivBudgetGetResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/BudgetCalculator/CompleteBudget": {
+      "get": {
+        "tags": [
+          "BudgetCalculator"
+        ],
+        "operationId": "GetCompleteBudget",
+        "parameters": [
+          {
+            "name": "RemainingCapital",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "MinimumPossibleSpending",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompleteBudgetGetResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompleteBudgetGetResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompleteBudgetGetResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/CsvBuilder": {
+      "get": {
+        "tags": [
+          "CsvBuilder"
+        ],
+        "operationId": "GetBudgetCsv",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CompleteBudgetGetResponseDto": {
+        "required": [
+          "dailyBudget",
+          "dailyBudgetAfterSpendingDailyBudget",
+          "dailyBudgetAfterSpendingThousand",
+          "dailyBudgetTomorrow",
+          "possibleMonthlySavings",
+          "remainingDays"
+        ],
+        "type": "object",
+        "properties": {
+          "dailyBudget": {
+            "type": "number",
+            "format": "double"
+          },
+          "dailyBudgetAfterSpendingDailyBudget": {
+            "type": "number",
+            "format": "double"
+          },
+          "dailyBudgetAfterSpendingThousand": {
+            "type": "number",
+            "format": "double"
+          },
+          "dailyBudgetTomorrow": {
+            "type": "number",
+            "format": "double"
+          },
+          "possibleMonthlySavings": {
+            "type": "number",
+            "format": "double"
+          },
+          "remainingDays": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NaivBudgetGetResponseDto": {
+        "required": [
+          "dailySpending"
+        ],
+        "type": "object",
+        "properties": {
+          "dailySpending": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
