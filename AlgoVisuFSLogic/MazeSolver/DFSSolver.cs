@@ -7,9 +7,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HvorFuckedErJeg2Logic.MazeSolver
+namespace AlgoVisuFSLogic.MazeSolver
 {
-    internal class DFSSolver : IMazeSolver
+    public class DFSSolver : IDFSSolver
     {
 
         public DFSSolver() 

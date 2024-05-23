@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HvorFuckedErJeg2Logic.MazeSolver
+namespace AlgoVisuFSLogic.MazeSolver
 {
-    internal interface IMazeSolver
+    public interface IDFSSolver
     {
         MazeModel Solve(MazeModel maze, Cell startCell);
     }

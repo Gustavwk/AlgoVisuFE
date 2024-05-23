@@ -1,4 +1,5 @@
 using AlgoVisuFSLogic.BudgetCalculatorService;
+using AlgoVisuFSLogic.MazeSolver;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 builder.Services.AddTransient<IBudgetCalculatorService, BudgetCalculatorService>();
+builder.Services.AddTransient<IDFSSolver, DFSSolver>();
 
 
 builder.Services.AddHttpsRedirection(options =>

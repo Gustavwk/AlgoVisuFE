@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HvorFuckedErJeg2Logic.MazeSolver
+namespace AlgoVisuFSLogic.MazeSolver
 {
     internal static class MazeUtils
     {
