@@ -42,7 +42,7 @@ namespace AlgoVisuFS.WebApi.Controllers
 
             var result = new SolveMazeResultDto
             {
-                MazeModel = solvedMazeDto,
+                MazeModel = ReverseMazeParser.Parse(solvedMazeDto),
                 Operations = operationsDto
             };
 
