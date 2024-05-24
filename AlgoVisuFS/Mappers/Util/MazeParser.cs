@@ -1,12 +1,14 @@
 ﻿using AlgoVisuFS.WebApi.Dtos;
+using System.Collections.Generic;
 
 namespace AlgoVisuFS.WebApi.Utils
 {
     public static class MazeParser
     {
-        public static MazeModelDto Parse(int[][] mazeArr)
+        public static MazeInputDto Parse(int[][] mazeArr)
         {
             var maze = new List<List<CellGetDto>>();
+            CellGetDto startCell = null;
 
             for (int i = 0; i < mazeArr.Length; i++)
             {
@@ -23,15 +25,29 @@ namespace AlgoVisuFS.WebApi.Utils
                         IsGoal = mazeArr[i][j] == 9
                     };
 
+                    if (cell.IsStart)
+                    {
+                        startCell = cell;
+                    }
+
                     row.Add(cell);
                 }
                 maze.Add(row);
             }
 
-            return new MazeModelDto
+            if (startCell == null)
             {
-                Solvable = false, 
-                Maze = maze
+                throw new InvalidOperationException("No start cell found in the maze array.");
+            }
+
+            return new MazeInputDto
+            {
+                MazeModel = new MazeModelDto
+                {
+                    Solvable = false,
+                    Maze = maze
+                },
+                starCell = startCell
             };
         }
     }

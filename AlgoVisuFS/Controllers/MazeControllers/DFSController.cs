@@ -29,8 +29,9 @@ namespace AlgoVisuFS.WebApi.Controllers
         }
 
         [HttpPost("solve")]
-        public ActionResult<SolveMazeResultDto> SolveMaze([FromBody] MazeInputDto mazeInput)
+        public ActionResult<SolveMazeResultDto> SolveMaze([FromBody] int[][] maze)
         {
+            var mazeInput = MazeParser.Parse(maze);
             var mazeModel = mazeInput.MazeModel.MapToMazeModel();
             var startCell = mazeModel.Maze[mazeInput.starCell.PosX][mazeInput.starCell.PosY];
 
