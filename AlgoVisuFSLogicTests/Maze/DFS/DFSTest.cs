@@ -1,72 +1,68 @@
-﻿using AlgoVisuFSLogic.Model.Enums;
-using AlgoVisuFSLogic.MazeSolver;
+﻿using AlgoVisuFSLogic.MazeSolver;
 using AlgoVisuFSLogic.Model;
-using System;
+using AlgoVisuFSLogic.Model.Enums;
+using AlgoVisuFSLogic.Model.Generics;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AlgoVisuFSLogicTests.Maze;
 
-namespace DFSSolverTests
+namespace AlgoVisuFSLogicTests.Maze
 {
-    [TestFixture]
     public class DFSSolverTests
     {
-        private DFSSolver solver;
-
-        [SetUp]
-        public void Setup()
+        [Test]
+        public void TestSolveMaze()
         {
-            solver = new DFSSolver();
+            int[][] mazeArray = new int[][]
+            {
+                new int[] { 7, 2, 1, 1, 1 },
+                new int[] { 1, 2, 2, 2, 1 },
+                new int[] { 1, 1, 1, 2, 9 }
+            };
+
+            MazeModel mazeModel = MazeParser.Parse(mazeArray);
+            Cell startCell = mazeModel.Maze[0][0]; // assuming start cell is marked with 7
+
+            var solver = new DFSSolver();
+            List<OperationChrono<Cell>> operations = solver.Solve(mazeModel, startCell);
+
+            Assert.IsNotNull(operations);
+            Assert.IsTrue(operations.Any(op => op.To.isGoal));
+
+            foreach (var operation in operations)
+            {
+                Assert.Multiple(() =>
+                {
+                    Assert.That(operation.From, Is.Not.Null);
+                    Assert.That(operation.To, Is.Not.Null);
+                });
+                Assert.Multiple(() =>
+                {
+                    Assert.That(operation.To.PosX, Is.EqualTo(operation.From.PosX));
+                    Assert.That(operation.To.PosY, Is.EqualTo(operation.From.PosY));
+                    Assert.That(operation.To.State, Is.Not.EqualTo(operation.From.State));
+                });
+            }
         }
 
         [Test]
-        public void Solve_SolvableMaze_ReturnsCorrectPath()
+        public void TestUnsolvableMaze()
         {
-            int[][] mazeArr = new int[][]
+            int[][] mazeArray = new int[][]
             {
-                new int[] { 1, 1, 1, 1, 1, 1, 1 },
-                new int[] { 7, 2, 1, 2, 2, 2, 1 },
-                new int[] { 1, 2, 1, 2, 1, 2, 1 },
-                new int[] { 1, 2, 2, 2, 1, 2, 1 },
-                new int[] { 1, 1, 1, 2, 1, 2, 9 },
-                new int[] { 1, 1, 1, 2, 2, 2, 1 },
-                new int[] { 1, 1, 1, 1, 1, 1, 1 }
+                new int[] { 7, 1, 1, 1, 1 },
+                new int[] { 1, 1, 1, 1, 1 },
+                new int[] { 1, 1, 1, 1, 9 }
             };
 
-            var maze = MazeParser.Parse(mazeArr);
+            MazeModel mazeModel = MazeParser.Parse(mazeArray);
+            Cell startCell = mazeModel.Maze[0][0]; // assuming start cell is marked with 7
 
-            var startCell = maze.Maze.First(row => row.Any(cell => cell.isStart)).First(cell => cell.isStart);
+            var solver = new DFSSolver();
+            List<OperationChrono<Cell>> operations = solver.Solve(mazeModel, startCell);
 
-            var result = solver.Solve(maze, startCell);
-
-            Assert.That(result.Maze.Any(row => row.Any(cell => cell.isGoal && cell.State == CellState.path)), Is.True);
+            Assert.That(operations, Is.Not.Null);
+            Assert.That(operations.Any(op => op.To.isGoal), Is.False);
         }
-
-        [Test]
-        public void Solve_UnsolvableMaze_ReturnsNoPath()
-        {
-            int[][] mazeArr = new int[][]
-            {
-                new int[] { 1, 1, 1, 1, 1, 1, 1 },
-                new int[] { 7, 2, 1, 2, 2, 2, 1 },
-                new int[] { 1, 1, 1, 2, 1, 2, 1 },
-                new int[] { 1, 2, 1, 1, 1, 2, 1 },
-                new int[] { 1, 1, 1, 2, 1, 2, 9 },
-                new int[] { 1, 1, 1, 2, 2, 2, 1 },
-                new int[] { 1, 1, 1, 1, 1, 1, 1 }
-            };
-
-            var maze = MazeParser.Parse(mazeArr);
-
-            var startCell = maze.Maze.First(row => row.Any(cell => cell.isStart)).First(cell => cell.isStart);
-
-            var result = solver.Solve(maze, startCell);
-
-            Assert.That(result.Maze.Any(row => row.Any(cell => cell.isGoal && cell.State == CellState.path)), Is.False);
-        }
-
-        
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AlgoVisuFS.WebApi.Dtos;
 using AlgoVisuFSLogic.Model;
 using AlgoVisuFSLogic.Model.Enums;
+using AlgoVisuFSLogic.Model.Generics;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -42,5 +43,12 @@ namespace AlgoVisuFS.WebApi.Mappers
                 Maze = maze
             };
         }
+
+        public static OperationChronoDto<CellGetDto> Map(this OperationChrono<Cell> op) => new()
+        {
+            SequenceNumber = op.SequenceNumber,
+            From = op.From.Map(),
+            To = op.To.Map()
+        };
     }
 }

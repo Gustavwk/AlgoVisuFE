@@ -50,6 +50,7 @@
     <Compile Include="Model\BudgetResponseModel.cs" />
     <Compile Include="Model\CompleteBudgetModel.cs" />
     <Compile Include="Model\Enums\CellState.cs" />
+    <Compile Include="Model\Generics\OperationChrono.cs" />
     <Compile Include="Model\MazeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

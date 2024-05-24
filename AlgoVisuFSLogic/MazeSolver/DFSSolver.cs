@@ -1,5 +1,6 @@
 ﻿using AlgoVisuFSLogic.Model;
 using AlgoVisuFSLogic.Model.Enums;
+using AlgoVisuFSLogic.Model.Generics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,29 +13,34 @@ namespace AlgoVisuFSLogic.MazeSolver
     public class DFSSolver : IDFSSolver
     {
 
-        public DFSSolver() 
+        public DFSSolver()
         { }
 
-        public MazeModel Solve(MazeModel maze, Cell startCell)
+        public List<OperationChrono<Cell>> Solve(MazeModel maze, Cell startCell)
         {
             var stack = new Stack<Cell>();
             stack.Push(startCell);
-            startCell.State = CellState.visited; 
-
+            startCell.State = CellState.visited;
+            var operations = new List<OperationChrono<Cell>>();
+            var sequence = 0;
             while (stack.Count > 0)
             {
                 var pos = stack.Peek();
 
                 if (pos.isGoal)
                 {
-                    return GetPath(stack, maze);
+                    operations.AddRange(GetPath(stack, maze, sequence));
+                    return operations;
                 }
 
                 var nextCell = GetUnvisitedNeighbor(maze, pos);
 
                 if (nextCell != null)
                 {
+                    sequence++;
+                    var original = MazeUtils.CloneCell(nextCell);
                     nextCell.State = CellState.visited;
+                    operations.Add(new OperationChrono<Cell>(original, nextCell, sequence));
                     stack.Push(nextCell);
                 }
                 else
@@ -42,7 +48,7 @@ namespace AlgoVisuFSLogic.MazeSolver
                     stack.Pop();
                 }
             }
-            return maze;
+            return operations;
         }
 
         private Cell GetUnvisitedNeighbor(MazeModel maze, Cell cell)
@@ -58,23 +64,28 @@ namespace AlgoVisuFSLogic.MazeSolver
         }
 
         private static bool IsNotVisited(Cell cell)
-        { 
+        {
             return cell.State != CellState.visited;
         }
 
         private static bool IsNotWall(Cell cell)
-        { 
-             return cell.State != CellState.wall;
+        {
+            return cell.State != CellState.wall;
         }
 
-        private MazeModel GetPath(Stack<Cell> path, MazeModel mazeModel) 
-        { 
-            while (path.Count > 0) 
-            { 
+        private List<OperationChrono<Cell>> GetPath(Stack<Cell> path, MazeModel mazeModel, int sequence)
+        {
+            var operations = new List<OperationChrono<Cell>>();
+
+            while (path.Count > 0)
+            {
                 var curr = path.Pop();
+                var original = MazeUtils.CloneCell(curr);
                 mazeModel.Maze[curr.PosX][curr.PosY].State = CellState.path;
+                operations.Add(new OperationChrono<Cell>(original, mazeModel.Maze[curr.PosX][curr.PosY], sequence++));
             }
-            return mazeModel;
+
+            return operations;
         }
     }
 }

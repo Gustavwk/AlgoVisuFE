@@ -1,4 +1,5 @@
 ﻿using AlgoVisuFSLogic.Model;
+using AlgoVisuFSLogic.Model.Generics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace AlgoVisuFSLogic.MazeSolver
 {
     public interface IDFSSolver
     {
-        MazeModel Solve(MazeModel maze, Cell startCell);
+        List<OperationChrono<Cell>> Solve(MazeModel maze, Cell startCell);
     }
 }
