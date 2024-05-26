@@ -184,17 +184,107 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MazeInputDto"
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/MazeInputDto"
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/MazeInputDto"
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SolveMazeResultDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SolveMazeResultDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SolveMazeResultDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/convert": {
+      "post": {
+        "tags": [
+          "Greedy"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
               }
             }
           }
@@ -216,6 +306,75 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MazeModelDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/solve": {
+      "post": {
+        "tags": [
+          "Greedy"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SolveMazeResultDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SolveMazeResultDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SolveMazeResultDto"
                 }
               }
             }
@@ -250,6 +409,25 @@
           },
           "isStart": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CellGetDtoOperationChronoDto": {
+        "required": [
+          "sequenceNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "sequenceNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "from": {
+            "$ref": "#/components/schemas/CellGetDto"
+          },
+          "to": {
+            "$ref": "#/components/schemas/CellGetDto"
           }
         },
         "additionalProperties": false
@@ -292,22 +470,6 @@
         },
         "additionalProperties": false
       },
-      "MazeInputDto": {
-        "required": [
-          "mazeModel",
-          "starCell"
-        ],
-        "type": "object",
-        "properties": {
-          "mazeModel": {
-            "$ref": "#/components/schemas/MazeModelDto"
-          },
-          "starCell": {
-            "$ref": "#/components/schemas/CellGetDto"
-          }
-        },
-        "additionalProperties": false
-      },
       "MazeModelDto": {
         "type": "object",
         "properties": {
@@ -336,6 +498,32 @@
           "dailySpending": {
             "type": "number",
             "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SolveMazeResultDto": {
+        "required": [
+          "mazeModel",
+          "operations"
+        ],
+        "type": "object",
+        "properties": {
+          "mazeModel": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          "operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CellGetDtoOperationChronoDto"
+            }
           }
         },
         "additionalProperties": false
