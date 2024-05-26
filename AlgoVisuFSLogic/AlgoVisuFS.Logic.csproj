@@ -45,7 +45,11 @@
     <Compile Include="BudgetCalculator\BudgetCalculatorService.cs" />
     <Compile Include="BudgetCalculator\IBudgetCalculatorService.cs" />
     <Compile Include="MazeSolver\DFSSolver.cs" />
+    <Compile Include="MazeSolver\GreedyDSFSolver.cs.cs" />
+    <Compile Include="MazeSolver\IASTARSolver.cs" />
+    <Compile Include="MazeSolver\IBFSSolver.cs" />
     <Compile Include="MazeSolver\IDFSSolver.cs" />
+    <Compile Include="MazeSolver\IGreedyDFSSolver.cs" />
     <Compile Include="MazeSolver\MazeUtils.cs" />
     <Compile Include="Model\BudgetResponseModel.cs" />
     <Compile Include="Model\CompleteBudgetModel.cs" />

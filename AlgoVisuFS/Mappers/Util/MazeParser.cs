@@ -1,10 +1,19 @@
 ﻿using AlgoVisuFS.WebApi.Dtos;
+using AlgoVisuFS.WebApi.Dtos.Enums;
 using System.Collections.Generic;
 
 namespace AlgoVisuFS.WebApi.Utils
 {
     public static class MazeParser
     {
+
+        public static CellGetDto GetGoalFromMaze(MazeModelDto mazeModelDto)
+        {
+            return mazeModelDto.Maze
+           .SelectMany(row => row)
+           .FirstOrDefault(cell => cell!.IsGoal);
+        }
+
         public static MazeInputDto Parse(int[][] mazeArr)
         {
             var maze = new List<List<CellGetDto>>();

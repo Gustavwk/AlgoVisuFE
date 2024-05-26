@@ -19,6 +19,16 @@ namespace AlgoVisuFS.WebApi.Mappers
             IsStart = cell.isStart
         };
 
+        public static Cell Map(this CellGetDto cellDto) => new()
+        {
+            PosX = cellDto.PosX,
+            PosY = cellDto.PosY,
+            Weight = cellDto.Weight,
+            State = (CellState)cellDto.State,
+            isGoal = cellDto.IsGoal,
+            isStart = cellDto.IsStart
+        };
+
         public static MazeModelDto Map(this MazeModel model) => new()
         {
             Solvable = model.Solvable,
