@@ -7,18 +7,18 @@ import type { SolveMazeResultDto } from '../models/SolveMazeResultDto';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
-export class DfsService {
+export class GreedyService {
     /**
      * @param requestBody
      * @returns MazeModelDto OK
      * @throws ApiError
      */
-    public static postDfsConvert(
+    public static postConvert(
         requestBody?: Array<Array<number>>,
     ): CancelablePromise<MazeModelDto> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/DFS/convert',
+            url: '/convert',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -28,12 +28,12 @@ export class DfsService {
      * @returns SolveMazeResultDto OK
      * @throws ApiError
      */
-    public static postDfsSolve(
+    public static postSolve(
         requestBody?: Array<Array<number>>,
     ): CancelablePromise<SolveMazeResultDto> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/DFS/solve',
+            url: '/solve',
             body: requestBody,
             mediaType: 'application/json',
         });

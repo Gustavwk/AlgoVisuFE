@@ -3,9 +3,9 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { CellGetDto } from './CellGetDto';
-import type { MazeModelDto } from './MazeModelDto';
-export type MazeInputDto = {
-    mazeModel: MazeModelDto;
-    starCell: CellGetDto;
+export type CellGetDtoOperationChronoDto = {
+    sequenceNumber: number;
+    from?: CellGetDto;
+    to?: CellGetDto;
 };
 
