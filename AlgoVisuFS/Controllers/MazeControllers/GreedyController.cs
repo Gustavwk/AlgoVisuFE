@@ -3,22 +3,18 @@ using AlgoVisuFS.WebApi.Mappers;
 using AlgoVisuFS.WebApi.Utils;
 using AlgoVisuFSLogic.MazeSolver;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 
-namespace AlgoVisuFS.WebApi.Controllers
+namespace AlgoVisuFS.WebApi.Controllers.MazeControllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class DFSController : ControllerBase
+    public class GreedyController : Controller
     {
         private readonly ILogger<DFSController> _logger;
-        private readonly IDFSSolver _dfsSolver;
+        private readonly IGreedyDFSSolver _greedySolver;
 
-        public DFSController(ILogger<DFSController> logger, IDFSSolver dfsSolver)
+        public GreedyController(ILogger<DFSController> logger, IGreedyDFSSolver greedySolver)
         {
             _logger = logger;
-            _dfsSolver = dfsSolver ?? throw new ArgumentNullException(nameof(dfsSolver));
+            _greedySolver = greedySolver ?? throw new ArgumentNullException(nameof(greedySolver));
         }
 
         [HttpPost("convert")]
@@ -32,10 +28,11 @@ namespace AlgoVisuFS.WebApi.Controllers
         public ActionResult<SolveMazeResultDto> SolveMaze([FromBody] int[][] maze)
         {
             var mazeInput = MazeParser.Parse(maze);
+            var goal = MazeParser.GetGoalFromMaze(mazeInput.MazeModel);
             var mazeModel = mazeInput.MazeModel.MapToMazeModel();
             var startCell = mazeModel.Maze[mazeInput.starCell.PosX][mazeInput.starCell.PosY];
 
-            var operations = _dfsSolver.Solve(mazeModel, startCell);
+            var operations = _greedySolver.Solve(mazeModel, startCell, goal.Map());
 
             var solvedMazeDto = mazeModel.Map();
             var operationsDto = operations.Select(op => op.Map()).ToList();

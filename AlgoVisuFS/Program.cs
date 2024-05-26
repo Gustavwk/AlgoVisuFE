@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins("http://localhost:3000") 
+        builder => builder.WithOrigins("http://localhost:3000")
                           .AllowAnyHeader()
                           .AllowAnyMethod());
 });
@@ -24,6 +24,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddTransient<IBudgetCalculatorService, BudgetCalculatorService>();
 builder.Services.AddTransient<IDFSSolver, DFSSolver>();
+builder.Services.AddTransient<IGreedyDFSSolver, GreedyDFSSolver>();
 
 
 builder.Services.AddHttpsRedirection(options =>
@@ -37,10 +38,10 @@ var app = builder.Build();
 
 app.UseCors("AllowSpecificOrigin");
 app.UseSwagger();
-     app.UseSwaggerUI(c => 
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "AlgoVisuFS V1");
-    });
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "AlgoVisuFS V1");
+});
 
 app.UseRouting();
 

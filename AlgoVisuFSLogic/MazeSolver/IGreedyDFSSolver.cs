@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace AlgoVisuFSLogic.MazeSolver
 {
-    public interface IDFSSolver
+    public interface IGreedyDFSSolver
     {
-        List<OperationChrono<Cell>> Solve(MazeModel maze, Cell startCell);
+        List<OperationChrono<Cell>> Solve(MazeModel maze, Cell startCell, Cell goal);
     }
 }

@@ -4,20 +4,16 @@ using AlgoVisuFSLogic.Model.Generics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AlgoVisuFSLogic.MazeSolver
 {
-    public class DFSSolver : IDFSSolver
+    public class GreedyDFSSolver : IGreedyDFSSolver
     {
-
-        public DFSSolver()
-        { }
-
-        public List<OperationChrono<Cell>> Solve(MazeModel maze, Cell startCell)
+        public List<OperationChrono<Cell>> Solve(MazeModel maze, Cell startCell, Cell goal)
         {
+            MazeUtils.WeightMaze(maze, goal);
             var stack = new Stack<Cell>();
             stack.Push(startCell);
             startCell.State = CellState.visited;
@@ -33,7 +29,7 @@ namespace AlgoVisuFSLogic.MazeSolver
                     return operations;
                 }
 
-                var nextCell = GetUnvisitedNeighbor(maze, pos);
+                var nextCell = GetUnvisitedNeighborWithBestWeight(maze, pos);
 
                 if (nextCell != null)
                 {
@@ -51,9 +47,13 @@ namespace AlgoVisuFSLogic.MazeSolver
             return operations;
         }
 
-        private Cell GetUnvisitedNeighbor(MazeModel maze, Cell cell)
+        private Cell GetUnvisitedNeighborWithBestWeight(MazeModel maze, Cell cell)
         {
-            foreach (var neighbor in MazeUtils.GetNeighborsFromCell(maze, cell))
+            foreach (var neighbor in
+                MazeUtils.GetWeightSortedCells(
+                    MazeUtils.GetNeighborsFromCell(maze, cell)
+                    )
+                )
             {
                 if (MazeUtils.IsNotVisited(neighbor) && MazeUtils.IsNotWall(neighbor))
                 {

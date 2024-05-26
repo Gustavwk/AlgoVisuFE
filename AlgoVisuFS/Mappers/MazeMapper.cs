@@ -1,6 +1,7 @@
 ﻿using AlgoVisuFS.WebApi.Dtos;
 using AlgoVisuFSLogic.Model;
 using AlgoVisuFSLogic.Model.Enums;
+using AlgoVisuFSLogic.Model.Generics;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,6 +17,16 @@ namespace AlgoVisuFS.WebApi.Mappers
             State = (int)cell.State,
             IsGoal = cell.isGoal,
             IsStart = cell.isStart
+        };
+
+        public static Cell Map(this CellGetDto cellDto) => new()
+        {
+            PosX = cellDto.PosX,
+            PosY = cellDto.PosY,
+            Weight = cellDto.Weight,
+            State = (CellState)cellDto.State,
+            isGoal = cellDto.IsGoal,
+            isStart = cellDto.IsStart
         };
 
         public static MazeModelDto Map(this MazeModel model) => new()
@@ -42,5 +53,12 @@ namespace AlgoVisuFS.WebApi.Mappers
                 Maze = maze
             };
         }
+
+        public static OperationChronoDto<CellGetDto> Map(this OperationChrono<Cell> op) => new()
+        {
+            SequenceNumber = op.SequenceNumber,
+            From = op.From.Map(),
+            To = op.To.Map()
+        };
     }
 }
