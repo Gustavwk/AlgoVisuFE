@@ -1,0 +1,10 @@
+/* src/Maze.css */
+.maze {
+    position: relative;
+    width: calc(50px * var(--width)); /* Juster bredden efter cellestørrelse */
+    height: calc(50px * var(--height)); /* Juster højden efter cellestørrelse */
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  

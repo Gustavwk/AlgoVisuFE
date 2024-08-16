@@ -1,9 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import NaivBudgetComponent from './Components/NaivBudgetComponent';
 import { OpenAPI } from './api';
-import CompleteBudgetComponent from './Components/CompleteBudgetComponent';
+import Cell from './Components/MazeComponents/Cell';
+import Maze from './Components/MazeComponents/ClickMazeComponent';
 
 function App() {
   console.log('Environment Variables:', process.env);
@@ -11,7 +11,8 @@ function App() {
   OpenAPI.BASE = process.env.REACT_APP_API_BASE_URL || "";
   return (
       <main>
-        <CompleteBudgetComponent initialRemainingCapital={1000} initialMinimumDailyBudget={1000} />
+        <Maze width={15} height={15} start={{x: 0, y: 0}} goal={{x: 14, y: 14}
+        }/>
       </main>
   );
 }

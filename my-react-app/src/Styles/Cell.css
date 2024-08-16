@@ -1,0 +1,35 @@
+/* src/Cell.css */
+.cell {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 2px;
+    width: 50px; /* Juster størrelsen efter behov */
+    height: 50px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .cell.free {
+    background-color: white;
+  }
+
+  .cell.wall {
+    background-color: black;
+  }
+  
+  .cell.start {
+    background-color: yellow;
+  }
+
+  .cell.visited {
+    background-color: blue;
+  }
+
+  .cell.path {
+    background-color: Green;
+  }
+  
+  .cell.goal {
+    background-color: red;
+  }
+  

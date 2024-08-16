@@ -26,8 +26,8 @@ namespace AlgoVisuFS.WebApi.Utils
 
         private static int ConvertCellStateToInt(CellGetDto cell)
         {
-            if (cell.IsStart) return 7;
-            if (cell.IsGoal) return 9;
+            if (cell.IsStart) return 5;
+            if (cell.IsGoal) return 6;
             return cell.State;
         }
     }

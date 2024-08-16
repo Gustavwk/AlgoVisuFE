@@ -30,8 +30,8 @@ namespace AlgoVisuFS.WebApi.Utils
                         PosY = j,
                         Weight = 1,
                         State = mazeArr[i][j],
-                        IsStart = mazeArr[i][j] == 7,
-                        IsGoal = mazeArr[i][j] == 9
+                        IsStart = mazeArr[i][j] == 5,
+                        IsGoal = mazeArr[i][j] == 6
                     };
 
                     if (cell.IsStart)
